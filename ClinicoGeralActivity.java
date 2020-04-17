@@ -44,13 +44,21 @@ public class ClinicoGeralActivity extends AppCompatActivity {
     }
 
     public void seleciona(View view) {
-        if (edtnome.getText().toString().isEmpty()){
-            Toast.makeText(ClinicoGeralActivity.this, "Precisa selecionar um medico",Toast.LENGTH_SHORT).show();
+            if (edtnome.getText().toString().isEmpty()){
+                Toast.makeText(ClinicoGeralActivity.this, "Precisa selecionar um medico",Toast.LENGTH_SHORT).show();
 
-        }else {
-        Intent intent1 = new Intent(getApplicationContext(),InformacaoActivity.class);
-        startActivity(intent1);
-    }}
+            }else {
+                Intent intent1 = new Intent(getApplicationContext(),InformacaoActivity.class);
+
+                Medico m = new Medico();
+
+                intent1.putExtra("nome", m.getNome());
+                intent1.putExtra("telefone", m.getTelefone());
+                intent1.putExtra("email", m.getEmail());
+                intent1.putExtra("endereco", m.getEndereco());
+                intent1.putExtra("especialidade", m.getEspecialidade());
+                startActivity(intent1);
+            }}
 
     private void listaMedicos(){
         String url  = HOST + "/readClinicoGeral.php";
@@ -65,6 +73,9 @@ public class ClinicoGeralActivity extends AppCompatActivity {
                             Medico m = new Medico();
                             m.setId(obj.get("id").getAsInt());
                             m.setNome(obj.get("nome").getAsString());
+                            m.setTelefone(obj.get("telefone").getAsString());
+                            m.setEmail(obj.get("email").getAsString());
+                            m.setEndereco(obj.get("endereco").getAsString());
                             m.setEspecialidade(obj.get("especialidade").getAsString());
 
                             lista.add(m);
@@ -87,4 +98,7 @@ public class ClinicoGeralActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }
