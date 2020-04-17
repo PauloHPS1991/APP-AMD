@@ -36,12 +36,11 @@ public class InformacaoActivity extends AppCompatActivity {
         editNomem = (EditText) findViewById(R.id.editNomem);
         editTelefonem = (EditText) findViewById(R.id.editTelefonem);
         editEmailm = (EditText) findViewById(R.id.editEmailm);
-        editEnd = (EditText)findViewById(R.id.editEnd);
-        editEspecialidade = (EditText)findViewById(R.id.editEspecialidade);
+        editEnd = (EditText) findViewById(R.id.editEnd);
+        editEspecialidade = (EditText) findViewById(R.id.editEspecialidade);
 
         listarmedico();
         //itemClicado = position;
-
 
 
     }
@@ -65,16 +64,18 @@ public class InformacaoActivity extends AppCompatActivity {
     public void ligar(View view) {
 
         String telefone = "12988508446";
-        Uri uri = Uri.parse("tel:"+telefone);
-        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        Uri uri = Uri.parse("tel:" + telefone);
+        Intent intent = new Intent(Intent.ACTION_DIAL, uri);
 
         startActivity(intent);
     }
 
-
+/*
     public void listarmedico(){
 
         Medico m = new Medico();
+        Intent intent = getIntent();
+        String nome = intent.getStringExtra("nome");
 
         editNomem.setText(String.valueOf(m.getNome()));
         editTelefonem.setText(String.valueOf(m.getTelefone()));
@@ -82,7 +83,24 @@ public class InformacaoActivity extends AppCompatActivity {
         editEnd.setText(String.valueOf(m.getEndereco()));
         editEspecialidade.setText(String.valueOf(m.getEspecialidade()));
 
+
+    }*/
+
+    public void listarmedico() {
+
+        Intent intent = getIntent();
+        String nome = intent.getStringExtra("nome");
+        String telefone = intent.getStringExtra("contato");
+        String email = intent.getStringExtra("email");
+        String endereco = intent.getStringExtra("endereco");
+        String especialidade = intent.getStringExtra("especialidade");
+
+        editNomem.setText(nome);
+        editTelefonem.setText(telefone);
+        editEmailm.setText(email);
+        editEnd.setText(endereco);
+        editEspecialidade.setText(especialidade);
+
+
     }
-
-
 }
