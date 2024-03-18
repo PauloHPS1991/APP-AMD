@@ -1,7 +1,7 @@
 <?php
 
 	$dsn="mysql:host=localhost;dbname=id10581753_bancodados;charset=utf8";
-	$usuario = "id10581753_root";
+	$usuario = "";
 	$senha = "";
 
 	try{
